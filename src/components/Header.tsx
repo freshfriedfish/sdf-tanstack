@@ -16,8 +16,7 @@ export function Header() {
           </div>
 
           {/* Navigation Links */}
-
-          <nav className="flex flex-col gap-3 text-sm">
+          <nav className="flex flex-col gap-3">
             <Link
               to="/blog"
               className="transition-colors"
@@ -35,12 +34,6 @@ export function Header() {
               className="transition-colors"
             >
               freshfriedfish
-            </a>
-            <a
-              href="#about"
-              className="transition-colors"
-            >
-              bitch
             </a>
           </nav>
         </div>

@@ -5,19 +5,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 
-interface WorkItem {
-  href: string
-  imageSrc: string
-  imageAlt: string
-  title: string
-  description: string
-}
-
-interface WorkSectionProps {
-  items?: WorkItem[]
-}
-
-const defaultWorkItems: WorkItem[] = [
+const defaultWorkItems = [
   {
     href: 'https://claude-tokenizer.vercel.app/',
     imageSrc: '/cts.jpg',
@@ -27,7 +15,7 @@ const defaultWorkItems: WorkItem[] = [
   },
   {
     href: 'https://claude-tokenizer.vercel.app/',
-    imageSrc: '/cts.jpg',
+    imageSrc: '/rd.jpg',
     imageAlt: 'claude-tokenizer',
     title: 'Claude Tokenizer',
     description: 'The Official Unofficial Tokenizer for Claude',
@@ -55,12 +43,12 @@ const defaultWorkItems: WorkItem[] = [
   },
 ]
 
-export function WorkSection({ items = defaultWorkItems }: WorkSectionProps) {
+export function WorkSection({ items = defaultWorkItems }) {
   return (
     <section className="px-4 py-8 md:flex-1">
       <div className="mx-auto max-w-7xl md:max-w-none">
-        <h2 className="mb-6 md:pt-30 text-2xl font-bold">work</h2>
-        <div className="flex flex-col gap-6 md:grid md:grid-cols-2">
+        <h2 className="mb-6 md:pt-30 text-2xl text-gray-300">Work</h2>
+        <div className="flex flex-col gap-6 gap-y-10 md:grid md:grid-cols-2 ">
           {items.map((item, index) => (
             <a
               key={index}
