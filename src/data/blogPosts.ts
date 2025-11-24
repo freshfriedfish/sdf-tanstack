@@ -16,7 +16,7 @@ export const blogPosts: BlogPost[] = [
     date: '2025-11-23',
     image: '/images/evolution.jpg',
     content: `
-I've been meaning to update my site for a while now, and I finally got around to it. It's interesting to see how my design has evolved over the years. Coincidentally I've refreshed my site once per year (2023 -> 2025), but I think i'm going to stick with this new design for a while.
+I've been meaning to update my site for a while now, and I finally got around to it. Coincidentally I've refreshed my site once per year (2023 -> 2025), but I think i'm going to stick with this new design for a while.
 
     `.trim(),
   },

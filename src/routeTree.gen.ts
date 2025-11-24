@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogPostIdRouteImport } from './routes/blog.$postId'
@@ -17,6 +18,11 @@ import { Route as BlogPostIdRouteImport } from './routes/blog.$postId'
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,32 +43,36 @@ const BlogPostIdRoute = BlogPostIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/blog': typeof BlogRouteWithChildren
   '/blog/$postId': typeof BlogPostIdRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/blog/$postId': typeof BlogPostIdRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/blog': typeof BlogRouteWithChildren
   '/blog/$postId': typeof BlogPostIdRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/blog/$postId' | '/blog/'
+  fullPaths: '/' | '/$' | '/blog' | '/blog/$postId' | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog/$postId' | '/blog'
-  id: '__root__' | '/' | '/blog' | '/blog/$postId' | '/blog/'
+  to: '/' | '/$' | '/blog/$postId' | '/blog'
+  id: '__root__' | '/' | '/$' | '/blog' | '/blog/$postId' | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
   BlogRoute: typeof BlogRouteWithChildren
 }
 
@@ -73,6 +83,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -113,6 +130,7 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
   BlogRoute: BlogRouteWithChildren,
 }
 export const routeTree = rootRouteImport

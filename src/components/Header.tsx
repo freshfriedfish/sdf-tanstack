@@ -13,7 +13,7 @@ export function Header() {
               Shaf
             </h1>
             <p className="mt-1 md:pb-12 max-w-64">
-              Software engineer interested in building scalable systems
+              i like to write code on the web
             </p>
           </div>
 
