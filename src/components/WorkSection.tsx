@@ -7,39 +7,32 @@ import {
 
 const defaultWorkItems = [
   {
+    href: 'https://osugallery.com',
+    imageSrc: '/home/osg.jpg',
+    imageAlt: 'osugallery',
+    title: 'Osu! Gallery',
+    description: 'Create, share, and explore Osu! slider art',
+  },
+  {
     href: 'https://claude-tokenizer.vercel.app/',
-    imageSrc: '/cts.jpg',
+    imageSrc: '/home/cts.jpg',
     imageAlt: 'claude-tokenizer',
     title: 'Claude Tokenizer',
     description: 'The official unofficial tokenizer for Claude',
   },
   {
-    href: 'https://claude-tokenizer.vercel.app/',
-    imageSrc: '/rd.jpg',
+    href: 'https://metalpipe.vercel.app/',
+    imageSrc: '/home/mp.jpg',
     imageAlt: 'claude-tokenizer',
-    title: 'Claude Tokenizer',
-    description: 'The Official Unofficial Tokenizer for Claude',
+    title: 'Metal Pipe',
+    description: 'An app that cures brainrot by beating the user with metal pipes',
   },
   {
-    href: 'https://claude-tokenizer.vercel.app/',
-    imageSrc: '/cts.jpg',
-    imageAlt: 'claude-tokenizer',
-    title: 'Claude Tokenizer',
-    description: 'The Official Unofficial Tokenizer for Claude',
-  },
-  {
-    href: 'https://claude-tokenizer.vercel.app/',
-    imageSrc: '/cts.jpg',
-    imageAlt: 'claude-tokenizer',
-    title: 'Claude Tokenizer',
-    description: 'The Official Unofficial Tokenizer for Claude',
-  },
-  {
-    href: 'https://claude-tokenizer.vercel.app/',
-    imageSrc: '/cts.jpg',
-    imageAlt: 'claude-tokenizer',
-    title: 'Claude Tokenizer',
-    description: 'The Official Unofficial Tokenizer for Claude',
+    href: 'https://freshfriedfish.github.io/radial-designer/',
+    imageSrc: '/home/rds.jpg',
+    imageAlt: 'Radial Designer',
+    title: 'Radial Designer',
+    description: 'Make your own OpenAI inspired logos',
   },
 ]
 
@@ -47,7 +40,7 @@ export function WorkSection({ items = defaultWorkItems }) {
   return (
     <section className="px-4 py-8 md:flex-1">
       <div className="mx-auto max-w-7xl md:max-w-none">
-        <h2 className="mb-6 md:pt-30 text-2xl text-gray-300">Work</h2>
+        <h2 className="mb-6 md:pt-10 text-2xl text-gray-300">Work</h2>
         <div className="flex flex-col gap-6 gap-y-10 md:grid md:grid-cols-2 ">
           {items.map((item, index) => (
             <a
@@ -57,11 +50,11 @@ export function WorkSection({ items = defaultWorkItems }) {
               rel="noopener noreferrer"
             >
               <Card>
-                <div className="p-1 border border-gray-500 rounded-2xl">
+                <div className="p-1 border border-gray-500 rounded-2xl overflow-hidden">
                   <img
                     src={item.imageSrc}
                     alt={item.imageAlt}
-                    className="h-full w-full object-cover rounded-2xl border border-gray-500"
+                    className="h-full w-full object-cover rounded-lg border border-gray-500"
                   />
                 </div>
                 <CardHeader>
