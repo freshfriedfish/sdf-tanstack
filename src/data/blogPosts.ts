@@ -5,43 +5,39 @@ export interface BlogPost {
   excerpt: string
   content: string
   date: string
-  author: string
+  image: string
 }
 
 export const blogPosts: BlogPost[] = [
   {
-    id: 'getting-started',
-    title: 'Getting Started with TanStack Router',
-    excerpt: 'Learn the basics of TanStack Router and file-based routing.',
-    date: '2024-01-15',
-    author: 'Dev Team',
+    id: 'site-refresh',
+    title: 'Site Refresh',
+    excerpt: 'Long overdue.',
+    date: '2025-11-23',
+    image: '/images/evolution.jpg',
     content: `
-TanStack Router is a powerful routing solution for React applications. 
-It provides type-safe routing with excellent developer experience.
+I've been meaning to update my site for a while now, and I finally got around to it. It's interesting to see how my design has evolved over the years. Coincidentally I've refreshed my site once per year (2023 -> 2025), but I think i'm going to stick with this new design for a while.
 
-Key features include:
-- File-based routing
-- Type-safe navigation
-- Built-in data loading
-- Code splitting support
-
-This is just a simple example to demonstrate dynamic routing.
     `.trim(),
   },
   {
     id: 'dynamic-routing',
-    title: 'Mastering Dynamic Routes',
-    excerpt: 'Deep dive into dynamic routing patterns and best practices.',
-    date: '2024-01-20',
-    author: 'Dev Team',
+    title: 'Hackathon Journal',
+    excerpt: 'Travel journal of hackathons & other events I have attended.',
+    date: '2024-04-15',
+    image: '/images/hackpsu.jpg',
     content: `
-Dynamic routes allow you to create flexible URL patterns that match multiple paths.
-
-In TanStack Router, you use the $ prefix to denote dynamic segments:
-- blog.$postId.tsx matches /blog/:postId
-- The postId parameter is automatically typed and available
-
-This makes building scalable applications much easier.
+• UB Hacking 2025: Buffalo, NY (11/9/25)
+• Nvidia X Vercel Hackathon: NYC (6/03/25)
+• HackMSFT: NYC (5/20/25)
+• HackMIT: Cambridge, MA (09/14/24)
+• AI Agents Hackathon: NYC (06/01/24)
+• MongoDB.local 2024: NYC (05/02/24)
+• P̶h̶i̶l̶l̶y̶ ̶C̶o̶d̶e̶f̶e̶s̶t̶ ̶2̶0̶2̶4̶:̶ ̶P̶h̶i̶l̶a̶d̶e̶l̶p̶h̶i̶a̶,̶ ̶P̶A̶ (04/20/24) attended an event in Buffalo, NY
+• Dragonhacks 2024: Philadelphia, PA (04/13/24)
+• MongoDB GenAI Hackathon: NYC (04/06/24)
+• IvyHacks 2024: NYC (03/23/24)
+• HackPSU Spring 2024: State College, PA (03/16/24)
     `.trim(),
   },
 ]

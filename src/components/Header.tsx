@@ -4,7 +4,7 @@ import { SiX, SiGithub } from 'react-icons/si'
 
 export function Header() {
   return (
-    <header className="px-4 py-6 md:flex-shrink-0 md:pt-40 md:sticky md:top-0 md:pr-24">
+    <header className="px-4 py-6 md:flex-shrink-0 md:pt-40 md:sticky md:top-0">
       <div className="mx-auto max-w-7xl md:max-w-none">
         <div className="flex items-center justify-between md:flex-col md:items-start md:gap-6">
           {/* intro */}

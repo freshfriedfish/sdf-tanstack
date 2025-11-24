@@ -1,6 +1,5 @@
 ---
 description: TanStack Router: Guide
-globs: src/**/*.ts,src/**/*.tsx
 alwaysApply: false
 ---
 # Authenticated Routes

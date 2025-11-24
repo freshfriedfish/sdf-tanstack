@@ -1,6 +1,5 @@
 ---
 description: TanStack Router: Routing
-globs: src/**/*.ts,src/**/*.tsx
 alwaysApply: false
 ---
 # Code-Based Routing
