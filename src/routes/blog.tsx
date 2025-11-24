@@ -1,17 +1,16 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
-function BlogPage() {
-  return (
-    <div className="min-h-screen">
-      <header className="px-4 py-6">
-        <Link to="/" className="text-sm transition-colors">
-          home
-        </Link>
-      </header>
-    </div>
-  )
+function BlogLayout() {
+    return (
+        <div className="min-h-screen px-4 py-8">
+            <div className="max-w-4xl mx-auto">
+                <Outlet />
+            </div>
+        </div>
+    )
 }
 
 export const Route = createFileRoute('/blog')({
-  component: BlogPage,
+    component: BlogLayout,
 })
+
