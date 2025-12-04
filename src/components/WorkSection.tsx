@@ -6,13 +6,13 @@ import {
 } from '@/components/ui/card'
 
 const defaultWorkItems = [
-  {
-    href: 'https://osugallery.com',
-    imageSrc: '/home/osg.jpg',
-    imageAlt: 'osugallery',
-    title: 'Osu! Gallery',
-    description: 'Create, share, & explore Osu! slider art',
-  },
+  // {
+  //   href: 'https://osugallery.com',
+  //   imageSrc: '/home/osg.jpg',
+  //   imageAlt: 'osugallery',
+  //   title: 'Osu! Gallery',
+  //   description: 'Create, share, & explore Osu! slider art',
+  // },
   {
     href: 'https://claude-tokenizer.vercel.app/',
     imageSrc: '/home/cts.jpg',
