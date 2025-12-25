@@ -3,16 +3,10 @@ alwaysApply: true
 ---
 This is a Tanstack Router + Tailwind v4 + Shadcn project. Mobile-first styling by default. Use tailwind semantics.
 
-When building UI components for this project:
+If building UI components for this project:
 
-1. ALWAYS reference the CSS variables defined in styles.css for colors, spacing, and theme values. Never hardcode colors or create new color classes.
+1. ALWAYS reference the CSS variables defined in styles.css for colors, spacing, and theme values. Never hardcode colors or create new color classes. check styles.css first to see what variables and conventions already exist. Match the established patterns.
 
-2. This is a dark-theme-only project with no theme switching. Design everything for dark mode using our existing variables.
-
-3. Keep Tailwind classes minimal and non-redundant:
+2. Keep Tailwind classes minimal and non-redundant:
    - Don't stack redundant utility classes
    - Leverage our existing design system
-   
-4. When in doubt, check styles.css first to see what variables and conventions already exist. Match the established patterns.
-
-The goal is consistency with our existing design system, not creating new styling approaches.

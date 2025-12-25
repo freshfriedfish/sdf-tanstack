@@ -35,4 +35,3 @@ export const Route = createFileRoute('/blog/')({
   loader: () => getAllPostPreviews(),
   component: BlogList,
 })
-

@@ -56,4 +56,3 @@ export const Route = createFileRoute('/blog/$postId')({
   component: BlogPost,
   notFoundComponent: NotFoundComponent,
 })
-

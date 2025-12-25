@@ -9,20 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as SplatRouteImport } from './routes/$'
+import { Route as BlogRouteRouteImport } from './routes/blog/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as BlogPostIdRouteImport } from './routes/blog.$postId'
+import { Route as MetalPipeIndexRouteImport } from './routes/metal-pipe/index'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as MetalPipeAppRouteImport } from './routes/metal-pipe/app'
+import { Route as BlogPostIdRouteImport } from './routes/blog/$postId'
 
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRouteRoute = BlogRouteRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -30,66 +32,99 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MetalPipeIndexRoute = MetalPipeIndexRouteImport.update({
+  id: '/metal-pipe/',
+  path: '/metal-pipe/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => BlogRoute,
+  getParentRoute: () => BlogRouteRoute,
+} as any)
+const MetalPipeAppRoute = MetalPipeAppRouteImport.update({
+  id: '/metal-pipe/app',
+  path: '/metal-pipe/app',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogPostIdRoute = BlogPostIdRouteImport.update({
   id: '/$postId',
   path: '/$postId',
-  getParentRoute: () => BlogRoute,
+  getParentRoute: () => BlogRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteRouteWithChildren
   '/$': typeof SplatRoute
-  '/blog': typeof BlogRouteWithChildren
   '/blog/$postId': typeof BlogPostIdRoute
+  '/metal-pipe/app': typeof MetalPipeAppRoute
   '/blog/': typeof BlogIndexRoute
+  '/metal-pipe': typeof MetalPipeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/blog/$postId': typeof BlogPostIdRoute
+  '/metal-pipe/app': typeof MetalPipeAppRoute
   '/blog': typeof BlogIndexRoute
+  '/metal-pipe': typeof MetalPipeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteRouteWithChildren
   '/$': typeof SplatRoute
-  '/blog': typeof BlogRouteWithChildren
   '/blog/$postId': typeof BlogPostIdRoute
+  '/metal-pipe/app': typeof MetalPipeAppRoute
   '/blog/': typeof BlogIndexRoute
+  '/metal-pipe/': typeof MetalPipeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$' | '/blog' | '/blog/$postId' | '/blog/'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/$'
+    | '/blog/$postId'
+    | '/metal-pipe/app'
+    | '/blog/'
+    | '/metal-pipe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/blog/$postId' | '/blog'
-  id: '__root__' | '/' | '/$' | '/blog' | '/blog/$postId' | '/blog/'
+  to: '/' | '/$' | '/blog/$postId' | '/metal-pipe/app' | '/blog' | '/metal-pipe'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog'
+    | '/$'
+    | '/blog/$postId'
+    | '/metal-pipe/app'
+    | '/blog/'
+    | '/metal-pipe/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRouteRoute: typeof BlogRouteRouteWithChildren
   SplatRoute: typeof SplatRoute
-  BlogRoute: typeof BlogRouteWithChildren
+  MetalPipeAppRoute: typeof MetalPipeAppRoute
+  MetalPipeIndexRoute: typeof MetalPipeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/$': {
       id: '/$'
       path: '/$'
       fullPath: '/$'
       preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -99,39 +134,57 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/metal-pipe/': {
+      id: '/metal-pipe/'
+      path: '/metal-pipe'
+      fullPath: '/metal-pipe'
+      preLoaderRoute: typeof MetalPipeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof BlogRouteRoute
+    }
+    '/metal-pipe/app': {
+      id: '/metal-pipe/app'
+      path: '/metal-pipe/app'
+      fullPath: '/metal-pipe/app'
+      preLoaderRoute: typeof MetalPipeAppRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/blog/$postId': {
       id: '/blog/$postId'
       path: '/$postId'
       fullPath: '/blog/$postId'
       preLoaderRoute: typeof BlogPostIdRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof BlogRouteRoute
     }
   }
 }
 
-interface BlogRouteChildren {
+interface BlogRouteRouteChildren {
   BlogPostIdRoute: typeof BlogPostIdRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
-const BlogRouteChildren: BlogRouteChildren = {
+const BlogRouteRouteChildren: BlogRouteRouteChildren = {
   BlogPostIdRoute: BlogPostIdRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+const BlogRouteRouteWithChildren = BlogRouteRoute._addFileChildren(
+  BlogRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRouteRoute: BlogRouteRouteWithChildren,
   SplatRoute: SplatRoute,
-  BlogRoute: BlogRouteWithChildren,
+  MetalPipeAppRoute: MetalPipeAppRoute,
+  MetalPipeIndexRoute: MetalPipeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

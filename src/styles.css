@@ -137,3 +137,7 @@ code {
     @apply bg-background text-foreground;
   }
 }
+
+.bg-radial-blue {
+  background: radial-gradient(ellipse at center, #2d5a7b 0%, #1a2332 100%);
+}

@@ -3,7 +3,6 @@ import { Header } from '@/components/Header'
 import { WorkSection } from '@/components/WorkSection'
 import { Tech } from '@/components/Tech'
 
-
 function HomePage() {
   return (
     <div className="min-h-screen">
