@@ -5,7 +5,7 @@ function BlogList() {
   const posts = Route.useLoaderData()
 
   return (
-    <div>
+    <div className="font-poppins">
       <div className="my-8">
         <Link to="/" className="text-primary hover:underline">
           ← Home

@@ -5,7 +5,7 @@ import { Tech } from '@/components/Tech'
 
 function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-poppins">
       <div className="md:flex md:items-start md:gap-8 md:max-w-6xl md:mx-auto">
         <Header />
         <div className="md:flex-1">
