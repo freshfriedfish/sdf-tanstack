@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Header } from '@/components/Header'
-import { WorkSection } from '@/components/WorkSection'
-import { Tech } from '@/components/Tech'
+import { Header } from '@/components/home/Header'
+import { WorkSection } from '@/components/home/WorkSection'
+import { Tech } from '@/components/home/Tech'
 
 function HomePage() {
   return (
