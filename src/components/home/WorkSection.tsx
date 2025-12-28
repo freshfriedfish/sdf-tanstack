@@ -51,11 +51,13 @@ export function WorkSection({ items = defaultWorkItems }) {
             >
               <Card>
                 <div className="p-1 border border-gray-500 rounded-2xl overflow-hidden">
-                  <img
-                    src={item.imageSrc}
-                    alt={item.imageAlt}
-                    className="h-full w-full object-cover rounded-lg border border-gray-500"
-                  />
+                  <div className="aspect-video overflow-hidden rounded-lg border border-gray-500">
+                    <img
+                      src={item.imageSrc}
+                      alt={item.imageAlt}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
                 <CardHeader>
                   <CardTitle>{item.title}</CardTitle>
