@@ -55,6 +55,8 @@ export function WorkSection({ items = defaultWorkItems }) {
                     <img
                       src={item.imageSrc}
                       alt={item.imageAlt}
+                      width="1600"
+                      height="900"
                       className="h-full w-full object-cover"
                     />
                   </div>
