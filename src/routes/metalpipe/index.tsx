@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 
 function MetalPipePage() {
   const [sound, setSound] = useState('metal pipe')
-  const [interval, setInterval] = useState([50])
+  const [interval, setInterval] = useState([2])
 
   return (
     <div className="min-h-screen bg-radial-blue h-full mx-auto flex flex-col justify-start items-center gap-8 p-4">
@@ -15,7 +15,7 @@ function MetalPipePage() {
         Metal Pipe
       </h1>
 
-      <MetalPipeRadioGroup value={sound} onValueChange={setSound} className="flex flex-col gap-4">
+      <MetalPipeRadioGroup value={sound} onValueChange={setSound} className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
           <MetalPipeRadioGroupItem
             value="metal pipe"
