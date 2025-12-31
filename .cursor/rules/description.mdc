@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+This is a Tanstack Router + Tailwind v4 + Shadcn project. Mobile-first styling by default. Use tailwind semantics. Allowed to use any terminal command except for starting dev server `npm run dev`

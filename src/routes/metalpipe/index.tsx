@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { MetalPipeRadioGroup, MetalPipeRadioGroupItem } from '@/components/metalpipe/radio-group'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
+import { Input } from '@/components/ui/input'
 
 function MetalPipePage() {
   const [sound, setSound] = useState('metal pipe')
@@ -53,6 +54,13 @@ function MetalPipePage() {
         </div>
       </MetalPipeRadioGroup>
 
+      {sound === 'custom sound' && (
+        <div className="flex flex-col gap-2 w-full max-w-xs">
+          <label className="text-white text-base">upload sound file</label>
+          <Input type="file" accept="audio/*" />
+        </div>
+      )}
+
       {/* unleash chaos = start, restore order = stop */}
       <div className="flex gap-4">
         <Button className="text-base font-normal rounded-full h-11">unleash chaos</Button>
@@ -65,7 +73,7 @@ function MetalPipePage() {
           value={interval}
           onValueChange={setInterval}
           min={0}
-          max={5}
+          max={4}
         />
       </div>
     </div>
