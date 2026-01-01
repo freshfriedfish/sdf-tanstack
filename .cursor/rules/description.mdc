@@ -2,4 +2,12 @@
 alwaysApply: true
 ---
 
-This is a Tanstack Router + Tailwind v4 + Shadcn project. Mobile-first styling by default. Use tailwind semantics. Allowed to use any terminal command except for starting dev server `npm run dev`
+This is a Tanstack Router + Tailwind v4 + Shadcn project. Mobile-first styling by default, and responsive for larger screens. Use tailwind semantics
+
+If building UI components for this project:
+
+1. ALWAYS reference the CSS variables defined in styles.css for colors, spacing, and theme values. Never hardcode colors or create new color classes. check styles.css first to see what variables and conventions already exist. Match the established patterns.
+
+2. Keep Tailwind classes minimal and non-redundant:
+   - Don't stack redundant utility classes
+   - Leverage our existing design system

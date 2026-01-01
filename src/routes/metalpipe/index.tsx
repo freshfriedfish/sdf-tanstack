@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { MetalPipeRadioGroup, MetalPipeRadioGroupItem } from '@/components/metalpipe/radio-group'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 
 function MetalPipePage() {
   const [sound, setSound] = useState('metal pipe')
-  const [interval, setInterval] = useState([2])
+  const [frequency, setfrequency] = useState([2])
   const [isPlaying, setIsPlaying] = useState(false)
   const [customSoundUrl, setCustomSoundUrl] = useState<string | null>(null)
   const timeoutRefs = useRef<NodeJS.Timeout[]>([])
@@ -178,14 +178,22 @@ function MetalPipePage() {
       </div>
 
       <div className="flex flex-col gap-2 w-full max-w-xs">
-        <label className="text-foreground">interval</label>
+        <label className="text-foreground">frequency</label>
         <Slider
-          value={interval}
-          onValueChange={setInterval}
+          value={frequency}
+          onValueChange={setfrequency}
           min={0}
           max={4}
         />
       </div>
+
+      <Link to="/metalpipe/download">
+        <img 
+          src="/images/appstore-gplay.png" 
+          alt="Download on App Store and Google Play"
+          className="fixed bottom-4 right-4 w-auto h-auto"
+        />
+      </Link>
     </div>
   )
 }
