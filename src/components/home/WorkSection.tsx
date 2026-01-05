@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router'
 import {
   Card,
   CardDescription,
@@ -18,14 +19,13 @@ const defaultWorkItems = [
     imageSrc: '/cts.jpg',
     imageAlt: 'claude-tokenizer',
     title: 'Claude Tokenizer',
-    description: 'The official unofficial token counter',
+    description: 'The official unofficial tokenizer for Claude',
   },
   {
-    href: 'https://metalpipe.vercel.app/',
+    href: '/metalpipe',
     imageSrc: '/mp.jpg',
-    imageAlt: 'claude-tokenizer',
     title: 'Metal Pipe',
-    description: 'The app that cures brainrot by beating you up with a metal pipe',
+    description: 'App that cures your brainrot by beating you up with metal pipes',
   },
   {
     href: 'https://freshfriedfish.github.io/radial-designer/',
@@ -42,13 +42,9 @@ export function WorkSection({ items = defaultWorkItems }) {
       <div className="mx-auto max-w-7xl md:max-w-none">
         <h2 className="mb-6 md:pt-10 text-2xl text-gray-300">Work</h2>
         <div className="flex flex-col gap-6 gap-y-10 md:grid md:grid-cols-2 ">
-          {items.map((item, index) => (
-            <a
-              key={index}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          {items.map((item, index) => {
+            const isInternalLink = item.href.startsWith('/')
+            const CardContent = (
               <Card>
                 <div className="p-1 border border-gray-500 rounded-2xl overflow-hidden">
                   <div className="aspect-video overflow-hidden rounded-lg border border-gray-500">
@@ -66,8 +62,23 @@ export function WorkSection({ items = defaultWorkItems }) {
                   <CardDescription>{item.description}</CardDescription>
                 </CardHeader>
               </Card>
-            </a>
-          ))}
+            )
+
+            return isInternalLink ? (
+              <Link key={index} to={item.href}>
+                {CardContent}
+              </Link>
+            ) : (
+              <a
+                key={index}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {CardContent}
+              </a>
+            )
+          })}
         </div>
       </div>
     </section>
