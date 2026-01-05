@@ -1,117 +1,77 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { MetalPipeRadioGroup, MetalPipeRadioGroupItem } from '@/components/metalpipe/radio-group'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { Input } from '@/components/ui/input'
+import { Badge } from '@/components/ui/badge'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { useAudioPlayback } from '@/lib/useAudioPlayback'
 
 function MetalPipePage() {
-  const [sound, setSound] = useState('metal pipe')
-  const [frequency, setfrequency] = useState([2])
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [customSoundUrl, setCustomSoundUrl] = useState<string | null>(null)
-  const timeoutRefs = useRef<NodeJS.Timeout[]>([])
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const isPlayingRef = useRef(false)
-
-  // Sound file mapping
-  const soundFiles: Record<string, string> = {
-    'metal pipe': '/sounds/metalpipe.mp3',
-    'kickball': '/sounds/kickball.mp3',
-    'vine boom': '/sounds/vineboom.mp3',
+  const [frequency, setFrequency] = useState([2])
+  const [aboutOpen, setAboutOpen] = useState(false)
+  
+  const getFrequencyLabel = (value: number) => {
+    const labels = ['dormant', 'slight', 'moderate', 'chaotic', 'max']
+    return labels[value] || 'moderate'
   }
-
-  // Cleanup custom sound URL on unmount
-  useEffect(() => {
-    return () => {
-      if (customSoundUrl) {
-        URL.revokeObjectURL(customSoundUrl)
-      }
-    }
-  }, [customSoundUrl])
-
-  // Cleanup timeouts on unmount
-  useEffect(() => {
-    return () => {
-      timeoutRefs.current.forEach(timeout => clearTimeout(timeout))
-      timeoutRefs.current = []
-    }
-  }, [])
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      // Revoke previous URL if exists
-      if (customSoundUrl) {
-        URL.revokeObjectURL(customSoundUrl)
-      }
-      const url = URL.createObjectURL(file)
-      setCustomSoundUrl(url)
-    }
-  }
-
-  const playSound = () => {
-    let soundUrl: string | null = null
-
-    if (sound === 'custom sound' && customSoundUrl) {
-      soundUrl = customSoundUrl
-    } else {
-      soundUrl = soundFiles[sound] || null
-    }
-
-    if (soundUrl) {
-      const audio = new Audio(soundUrl)
-      audioRef.current = audio
-      audio.play().catch(err => {
-        console.error('Error playing sound:', err)
-      })
-    }
-  }
-
-  const startPlaying = () => {
-    if (isPlayingRef.current) return
-
-    setIsPlaying(true)
-    isPlayingRef.current = true
-
-    const scheduleNext = () => {
-      if (!isPlayingRef.current) return
-
-      // Random delay between 0.5 and 3 seconds
-      const randomDelay = Math.random() * 2500 + 500
-      
-      const timeout = setTimeout(() => {
-        if (isPlayingRef.current) {
-          playSound()
-          scheduleNext()
-        }
-      }, randomDelay)
-
-      timeoutRefs.current.push(timeout)
-    }
-
-    // Play first sound immediately
-    playSound()
-    scheduleNext()
-  }
-
-  const stopPlaying = () => {
-    isPlayingRef.current = false
-    setIsPlaying(false)
-    timeoutRefs.current.forEach(timeout => clearTimeout(timeout))
-    timeoutRefs.current = []
-    
-    if (audioRef.current) {
-      audioRef.current.pause()
-      audioRef.current.currentTime = 0
-    }
-  }
+  const {
+    sound,
+    setSound,
+    isPlaying,
+    customSoundUrl,
+    handleFileChange,
+    startPlaying,
+    stopPlaying,
+  } = useAudioPlayback(frequency[0])
 
   return (
     <div className="min-h-screen bg-radial-blue h-full mx-auto flex flex-col justify-start items-center gap-8 p-4">
-      <h1 className="bg-linear-to-r from-gray-300 to-gray-600 bg-clip-text text-5xl font-bold text-transparent">
-        Metal Pipe
-      </h1>
+      <div className="relative w-full flex justify-center items-center">
+        <h1 className="bg-linear-to-r from-gray-300 to-gray-600 bg-clip-text text-5xl font-bold text-transparent">
+          Metal Pipe
+        </h1>
+        <Dialog open={aboutOpen} onOpenChange={setAboutOpen}>
+          <DialogTrigger asChild>
+            <Button 
+               
+              className="absolute top-0 right-0"
+            >
+              About
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            
+            <DialogHeader>
+              <DialogTitle>About</DialogTitle>
+            <div className="">
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/xsv41zSvsNo"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="rounded-lg"
+              ></iframe>
+            </div>
+              <DialogDescription>
+                Metal Pipe is a fun sound generator application that plays random sounds at customizable intervals.
+                Choose from preset sounds or upload your own audio file to create a unique experience.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </div>
 
       <MetalPipeRadioGroup value={sound} onValueChange={setSound} className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
@@ -178,10 +138,21 @@ function MetalPipePage() {
       </div>
 
       <div className="flex flex-col gap-2 w-full max-w-xs">
-        <label className="text-foreground">frequency</label>
+        <div className="flex items-center justify-between">
+          <label className="text-foreground">frequency</label>
+          {frequency[0] === 4 ? (
+            <Badge className="text-base font-thin px-1.5 py-0 animate-rotating-shake">
+              {getFrequencyLabel(frequency[0])}
+            </Badge>
+          ) : (
+            <span className="text-foreground inline-block">
+              {getFrequencyLabel(frequency[0])}
+            </span>
+          )}
+        </div>
         <Slider
           value={frequency}
-          onValueChange={setfrequency}
+          onValueChange={setFrequency}
           min={0}
           max={4}
         />
