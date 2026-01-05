@@ -66,7 +66,7 @@ function MetalPipeAppPage() {
                   </div>
                   <div className="flex flex-col items-start">
                     <span className="text-xl font-bold text-white leading-tight">Download .ipa</span>
-                    <span className="text-base text-gray-400 leading-tight">for IOS</span>
+                    <span className="text-base text-gray-400 leading-tight">For IOS</span>
                   </div>
                 </a>
               </Button>
@@ -119,15 +119,33 @@ function MetalPipeAppPage() {
         <div className="w-full max-w-4xl flex flex-col gap-4 mt-4">
           <h2 className="text-4xl font-semibold">Description</h2>
           <p className="text-gray-400 text-xl">
-            Metal Pipe is a app that allows you to play audio at random intervals.
+            Metal Pipe is an app that allows you to play audio at random intervals.<br />
+            Keep yourself entertained with the soothing sounds of metal pipes.<br />
+            Or choose your own custom sound.
           </p>
-          <p className="text-gray-400 text-xl">
-            Keep yourself entertained with the soothing sounds of metal pipes.
-          </p>
-          <p className="text-gray-400 text-xl">
-           Or choose your own custom sound.
-          </p>
-          
+        </div>
+        <div className="w-full max-w-4xl flex flex-col gap-4 mt-4">
+          <h2 className="text-4xl font-semibold">Installation</h2>
+          <div>
+            <h3 className="text-lg font-semibold text-white mt-2">For iOS</h3>
+            <p className="text-gray-400 text-xl">
+              Unfortunately, you will need to sideload the app on your iPhone yourself.{' '}
+              <a 
+                href="https://faq.altstore.io/altstore-classic/how-to-install-altstore-macos" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-white hover:text-gray-300 underline"
+              >
+                Follow these instructions
+              </a>
+              {' '}to install AltStore
+            </p>
+            <h3 className="text-lg font-semibold text-white mt-2">For Android</h3>
+            <p className="text-gray-400 text-xl">
+              Simply install the APK and enjoy!
+            </p>
+          </div>
+
         </div>
 
         {/* Go back link */}
