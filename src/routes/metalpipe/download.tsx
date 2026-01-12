@@ -120,8 +120,7 @@ function MetalPipeAppPage() {
           <h2 className="text-4xl font-semibold">Description</h2>
           <p className="text-gray-400 text-xl">
             Metal Pipe is an app that allows you to play audio at random intervals.<br />
-            Keep yourself entertained with the soothing sounds of metal pipes.<br />
-            Or choose your own custom sound.
+                            This app plays sounds in the background depending on your chosen preset sound (or custom sound) and frequency. Leave the app open in the background and it'll play your chosen sound in the background at random intervals..<br />
           </p>
         </div>
         <div className="w-full max-w-4xl flex flex-col gap-4 mt-4">
