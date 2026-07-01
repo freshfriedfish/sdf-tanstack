@@ -21,7 +21,7 @@ I've been meaning to update my site for a while now, and I finally got around to
     `.trim(),
   },
   {
-    id: 'dynamic-routing',
+    id: 'Hackathons',
     title: 'Hackathon Journal',
     excerpt: 'Travel journal of hackathons & other events I have attended.',
     date: '2024-04-15',
