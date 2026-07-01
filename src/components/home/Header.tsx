@@ -28,13 +28,13 @@ export function Header() {
                 <Newspaper className="w-4 h-4" />
                 /blog
               </Link>
-              <a
+              {/* <a
                 href="https://x.com/ferrororo"
                 className="flex items-center gap-2 transition-colors hover:text-cyan-400"
               >
                 <SiX className="w-4 h-4" />
                 @ferrororo
-              </a>
+              </a> */}
               <a
                 href="https://github.com/freshfriedfish"
                 className="flex items-center gap-2 transition-colors hover:text-purple-400"

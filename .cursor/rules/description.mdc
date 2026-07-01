@@ -1,7 +1,8 @@
 ---
-alwaysApply: false
+alwaysApply: true
 ---
-This is a Tanstack Router + Tailwind v4 + Shadcn project. Responsive styling. Mobile-first styling by default and responsive for large screens (lg). Use tailwind semantics.
+
+This is a Tanstack Router + Tailwind v4 + Shadcn project. Mobile-first styling by default, and responsive for larger screens. Use tailwind semantics
 
 If building UI components for this project:
 

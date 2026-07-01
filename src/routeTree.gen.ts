@@ -12,9 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as BlogRouteRouteImport } from './routes/blog/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as MetalPipeIndexRouteImport } from './routes/metal-pipe/index'
+import { Route as MetalpipeIndexRouteImport } from './routes/metalpipe/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as MetalPipeAppRouteImport } from './routes/metal-pipe/app'
+import { Route as MetalpipeDownloadRouteImport } from './routes/metalpipe/download'
 import { Route as BlogPostIdRouteImport } from './routes/blog/$postId'
 
 const SplatRoute = SplatRouteImport.update({
@@ -32,9 +32,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MetalPipeIndexRoute = MetalPipeIndexRouteImport.update({
-  id: '/metal-pipe/',
-  path: '/metal-pipe/',
+const MetalpipeIndexRoute = MetalpipeIndexRouteImport.update({
+  id: '/metalpipe/',
+  path: '/metalpipe/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -42,9 +42,9 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BlogRouteRoute,
 } as any)
-const MetalPipeAppRoute = MetalPipeAppRouteImport.update({
-  id: '/metal-pipe/app',
-  path: '/metal-pipe/app',
+const MetalpipeDownloadRoute = MetalpipeDownloadRouteImport.update({
+  id: '/metalpipe/download',
+  path: '/metalpipe/download',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogPostIdRoute = BlogPostIdRouteImport.update({
@@ -58,17 +58,17 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRouteRouteWithChildren
   '/$': typeof SplatRoute
   '/blog/$postId': typeof BlogPostIdRoute
-  '/metal-pipe/app': typeof MetalPipeAppRoute
+  '/metalpipe/download': typeof MetalpipeDownloadRoute
   '/blog/': typeof BlogIndexRoute
-  '/metal-pipe': typeof MetalPipeIndexRoute
+  '/metalpipe': typeof MetalpipeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/blog/$postId': typeof BlogPostIdRoute
-  '/metal-pipe/app': typeof MetalPipeAppRoute
+  '/metalpipe/download': typeof MetalpipeDownloadRoute
   '/blog': typeof BlogIndexRoute
-  '/metal-pipe': typeof MetalPipeIndexRoute
+  '/metalpipe': typeof MetalpipeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -76,9 +76,9 @@ export interface FileRoutesById {
   '/blog': typeof BlogRouteRouteWithChildren
   '/$': typeof SplatRoute
   '/blog/$postId': typeof BlogPostIdRoute
-  '/metal-pipe/app': typeof MetalPipeAppRoute
+  '/metalpipe/download': typeof MetalpipeDownloadRoute
   '/blog/': typeof BlogIndexRoute
-  '/metal-pipe/': typeof MetalPipeIndexRoute
+  '/metalpipe/': typeof MetalpipeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,28 +87,34 @@ export interface FileRouteTypes {
     | '/blog'
     | '/$'
     | '/blog/$postId'
-    | '/metal-pipe/app'
+    | '/metalpipe/download'
     | '/blog/'
-    | '/metal-pipe'
+    | '/metalpipe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/blog/$postId' | '/metal-pipe/app' | '/blog' | '/metal-pipe'
+  to:
+    | '/'
+    | '/$'
+    | '/blog/$postId'
+    | '/metalpipe/download'
+    | '/blog'
+    | '/metalpipe'
   id:
     | '__root__'
     | '/'
     | '/blog'
     | '/$'
     | '/blog/$postId'
-    | '/metal-pipe/app'
+    | '/metalpipe/download'
     | '/blog/'
-    | '/metal-pipe/'
+    | '/metalpipe/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRouteRoute: typeof BlogRouteRouteWithChildren
   SplatRoute: typeof SplatRoute
-  MetalPipeAppRoute: typeof MetalPipeAppRoute
-  MetalPipeIndexRoute: typeof MetalPipeIndexRoute
+  MetalpipeDownloadRoute: typeof MetalpipeDownloadRoute
+  MetalpipeIndexRoute: typeof MetalpipeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -134,11 +140,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/metal-pipe/': {
-      id: '/metal-pipe/'
-      path: '/metal-pipe'
-      fullPath: '/metal-pipe'
-      preLoaderRoute: typeof MetalPipeIndexRouteImport
+    '/metalpipe/': {
+      id: '/metalpipe/'
+      path: '/metalpipe'
+      fullPath: '/metalpipe'
+      preLoaderRoute: typeof MetalpipeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -148,11 +154,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof BlogRouteRoute
     }
-    '/metal-pipe/app': {
-      id: '/metal-pipe/app'
-      path: '/metal-pipe/app'
-      fullPath: '/metal-pipe/app'
-      preLoaderRoute: typeof MetalPipeAppRouteImport
+    '/metalpipe/download': {
+      id: '/metalpipe/download'
+      path: '/metalpipe/download'
+      fullPath: '/metalpipe/download'
+      preLoaderRoute: typeof MetalpipeDownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$postId': {
@@ -183,8 +189,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRouteRoute: BlogRouteRouteWithChildren,
   SplatRoute: SplatRoute,
-  MetalPipeAppRoute: MetalPipeAppRoute,
-  MetalPipeIndexRoute: MetalPipeIndexRoute,
+  MetalpipeDownloadRoute: MetalpipeDownloadRoute,
+  MetalpipeIndexRoute: MetalpipeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
