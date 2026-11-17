@@ -2,11 +2,11 @@ Welcome to your new TanStack app!
 
 # Getting Started
 
-To run this application:
+Use Node.js 22.22.2 or later in the 22.x series, Node.js 24.15.0 or later in the 24.x series, or Node.js 26 and newer.
 
 ```bash
-npm install
-npm run start
+npm ci
+npm run dev
 ```
 
 # Building For Production

@@ -9,14 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as BlogRouteRouteImport } from './routes/blog/route'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as MetalpipeIndexRouteImport } from './routes/metalpipe/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as MetalpipeDownloadRouteImport } from './routes/metalpipe/download'
 import { Route as BlogPostIdRouteImport } from './routes/blog/$postId'
+import { Route as MetalpipeIndexRouteImport } from './routes/metalpipe/index'
+import { Route as MetalpipeDownloadRouteImport } from './routes/metalpipe/download'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
@@ -27,30 +32,25 @@ const BlogRouteRoute = BlogRouteRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => BlogRouteRoute,
+} as any)
+const BlogPostIdRoute = BlogPostIdRouteImport.update({
+  id: '/$postId',
+  path: '/$postId',
+  getParentRoute: () => BlogRouteRoute,
 } as any)
 const MetalpipeIndexRoute = MetalpipeIndexRouteImport.update({
   id: '/metalpipe/',
   path: '/metalpipe/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogIndexRoute = BlogIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => BlogRouteRoute,
-} as any)
 const MetalpipeDownloadRoute = MetalpipeDownloadRouteImport.update({
   id: '/metalpipe/download',
   path: '/metalpipe/download',
   getParentRoute: () => rootRouteImport,
-} as any)
-const BlogPostIdRoute = BlogPostIdRouteImport.update({
-  id: '/$postId',
-  path: '/$postId',
-  getParentRoute: () => BlogRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -60,7 +60,7 @@ export interface FileRoutesByFullPath {
   '/blog/$postId': typeof BlogPostIdRoute
   '/metalpipe/download': typeof MetalpipeDownloadRoute
   '/blog/': typeof BlogIndexRoute
-  '/metalpipe': typeof MetalpipeIndexRoute
+  '/metalpipe/': typeof MetalpipeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,7 +89,7 @@ export interface FileRouteTypes {
     | '/blog/$postId'
     | '/metalpipe/download'
     | '/blog/'
-    | '/metalpipe'
+    | '/metalpipe/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -119,6 +119,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$': {
       id: '/$'
       path: '/$'
@@ -133,20 +140,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/metalpipe/': {
-      id: '/metalpipe/'
-      path: '/metalpipe'
-      fullPath: '/metalpipe'
-      preLoaderRoute: typeof MetalpipeIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blog/': {
       id: '/blog/'
       path: '/'
@@ -154,19 +147,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof BlogRouteRoute
     }
-    '/metalpipe/download': {
-      id: '/metalpipe/download'
-      path: '/metalpipe/download'
-      fullPath: '/metalpipe/download'
-      preLoaderRoute: typeof MetalpipeDownloadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blog/$postId': {
       id: '/blog/$postId'
       path: '/$postId'
       fullPath: '/blog/$postId'
       preLoaderRoute: typeof BlogPostIdRouteImport
       parentRoute: typeof BlogRouteRoute
+    }
+    '/metalpipe/': {
+      id: '/metalpipe/'
+      path: '/metalpipe'
+      fullPath: '/metalpipe/'
+      preLoaderRoute: typeof MetalpipeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metalpipe/download': {
+      id: '/metalpipe/download'
+      path: '/metalpipe/download'
+      fullPath: '/metalpipe/download'
+      preLoaderRoute: typeof MetalpipeDownloadRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
