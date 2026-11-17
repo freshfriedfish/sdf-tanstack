@@ -15,6 +15,13 @@ const defaultWorkItems = [
   //   description: 'Create, share, & explore Osu! slider art',
   // },
   {
+    href: 'https://robocraftgarage.net/',
+    imageSrc: '/rcg.jpg',
+    imageAlt: 'Robocraft Garage',
+    title: 'Robocraft Garage',
+    description: 'Share, rate, & discover Robocraft robots',
+  },
+  {
     href: 'https://claude-tokenizer.vercel.app/',
     imageSrc: '/cts.jpg',
     imageAlt: 'claude-tokenizer',
